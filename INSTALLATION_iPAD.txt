@@ -1,0 +1,38 @@
+RECHNUNG3D – INSTALLATION AUF DEM IPAD-HOMEBILDSCHIRM
+
+Wichtig:
+Eine PWA kann nicht direkt aus der Dateien-App installiert werden.
+Der Ordner muss einmal über eine HTTPS-Webadresse veröffentlicht werden.
+Danach läuft Rechnung3D wie eine App vom Home-Bildschirm und nach dem ersten Laden auch offline.
+
+INHALT
+- index.html
+- manifest.webmanifest
+- sw.js
+- logo.png
+- apple-touch-icon.png
+- icon-192.png
+- icon-512.png
+
+KOSTENLOSE VERÖFFENTLICHUNG – EINFACHER WEG
+Option A: GitHub Pages
+1. Kostenloses GitHub-Konto anlegen/anmelden.
+2. Neues Repository, z. B. „rechnung3d“, erstellen.
+3. Alle Dateien aus diesem Ordner hochladen.
+4. Repository Settings > Pages öffnen.
+5. Deploy from a branch / main / root auswählen.
+6. Die erzeugte HTTPS-Adresse in Safari auf dem iPad öffnen.
+7. Safari: Teilen > Zum Home-Bildschirm > Hinzufügen.
+8. Das Rechnung3D-Symbol anschließend auf die erste Home-Bildschirmseite ziehen.
+
+Option B:
+Jeder andere statische HTTPS-Webhost funktioniert ebenfalls (z. B. Cloudflare Pages oder Netlify).
+
+PDF AUF DEM IPAD
+In Rechnung3D auf „PDF erstellen / Drucken“ tippen.
+Im iPad-Druckdialog die Vorschau öffnen und über Teilen > In Dateien sichern die PDF speichern.
+
+DATENSCHUTZ
+Die App arbeitet lokal im Browser.
+Absenderdaten, Bankdaten, Rabatte, Entwurf und Archiv werden im lokalen Speicher der Web-App gespeichert.
+Es ist kein Server für Rechnungsdaten erforderlich.
