@@ -1,4 +1,4 @@
-const CACHE = "rechnung3d-v1";
+const CACHE = "rechnung3d-v2";
 const ASSETS = [
   "./",
   "./index.html",

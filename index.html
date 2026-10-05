@@ -226,8 +226,8 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#8c9298;box-sh
     <section class="card">
       <h2>Zahlung / Notiz</h2>
       <div class="grid2">
-        <div><label>Zahlungshinweis</label><textarea id="paymentNote">Barzahlung oder Überweisung nach Absprache</textarea></div>
-        <div><label>Zusätzliche Notiz</label><textarea id="extraNote">Vielen Dank!</textarea></div>
+        <div><label>Zahlungshinweis</label><textarea id="paymentNote">Zahlung per Überweisung oder bar nach Absprache. Bei Überweisung bitte die Rechnungsnummer als Verwendungszweck angeben.</textarea></div>
+        <div><label>Zusätzliche Notiz</label><textarea id="extraNote">Vielen Dank für Ihr Vertrauen und die Unterstützung meines 3D-Druck-Hobbys. Ich wünsche Ihnen viel Freude mit Ihrem individuell angefertigten 3D-Druck.</textarea></div>
       </div>
     </section>
 
@@ -305,6 +305,8 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#8c9298;box-sh
 
 <script>
 const KEY = "rechnung3d.pwa.v1";
+const PAYMENT_DEFAULT = 'Zahlung per Überweisung oder bar nach Absprache. Bei Überweisung bitte die Rechnungsnummer als Verwendungszweck angeben.';
+const NOTE_DEFAULT = 'Vielen Dank für Ihr Vertrauen und die Unterstützung meines 3D-Druck-Hobbys. Ich wünsche Ihnen viel Freude mit Ihrem individuell angefertigten 3D-Druck.';
 const DEFAULTS = {
   sellerName:"Ulrich Schmeißer",
   sellerAddress:"Am Wasserturm 14\n59302 Oelde",
@@ -422,8 +424,12 @@ function loadDraft(){
     document.getElementById("dueDate").value=d.dueDate||"";
     document.getElementById("discountGroup").value=d.discountGroup||"none";
     document.getElementById("discountPercent").value=d.discountPercent||0;
-    document.getElementById("paymentNote").value=d.paymentNote||"Barzahlung oder Überweisung nach Absprache";
-    document.getElementById("extraNote").value=d.extraNote||"Vielen Dank!";
+    document.getElementById("paymentNote").value =
+      (!d.paymentNote || d.paymentNote==="Barzahlung oder Überweisung nach Absprache")
+      ? PAYMENT_DEFAULT : d.paymentNote;
+    document.getElementById("extraNote").value =
+      (!d.extraNote || d.extraNote==="Vielen Dank!")
+      ? NOTE_DEFAULT : d.extraNote;
     if(Array.isArray(d.items)&&d.items.length===10)items=d.items;
   }catch(e){}
 }
@@ -438,7 +444,8 @@ function newInvoice(){
   document.getElementById("customerAddress").value="";
   document.getElementById("discountGroup").value="none";
   document.getElementById("discountPercent").value=0;
-  document.getElementById("extraNote").value="Vielen Dank!";
+  document.getElementById("paymentNote").value=PAYMENT_DEFAULT;
+  document.getElementById("extraNote").value=NOTE_DEFAULT;
   document.getElementById("invoiceDate").value="";
   document.getElementById("dueDate").value="";
   clearDraft();
@@ -466,7 +473,8 @@ function newInvoiceSilent(){
   ["customerName","customerAddress"].forEach(id=>document.getElementById(id).value="");
   document.getElementById("discountGroup").value="none";
   document.getElementById("discountPercent").value=0;
-  document.getElementById("extraNote").value="Vielen Dank!";
+  document.getElementById("paymentNote").value=PAYMENT_DEFAULT;
+  document.getElementById("extraNote").value=NOTE_DEFAULT;
   document.getElementById("invoiceDate").value="";
   document.getElementById("dueDate").value="";
   clearDraft();initDates();buildPositions();totals();
